@@ -1,0 +1,32 @@
+@use '../../../../styles/constants' as constants;
+
+.cell.status {
+    font-weight: 700;
+
+        &.status--active {
+            color: constants.$success;
+    }
+        &.status--waiting {
+            color: constants.$warning;
+    }
+        &.status--innactcive, &.status--down {
+            color: constants.$danger;
+    }
+}
+
+.data.download:hover {
+    cursor: pointer;
+}
+
+.cell.status-audit {
+    
+    font-weight: 700;
+
+    &.send {
+        color: constants.$success;
+    }
+
+    &.no-send {
+        color: constants.$warning;
+    }
+}

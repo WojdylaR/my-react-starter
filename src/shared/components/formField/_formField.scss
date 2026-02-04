@@ -1,0 +1,120 @@
+@use '../../../styles/constants' as constants;
+@use '../../../styles/mixins' as mixins;
+
+.submit-button {
+    background-color: constants.$primary;
+    border: none;
+    color: white;
+    padding: 6px 60px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.90rem;
+    font-weight: 600;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: constants.$radius-sm;
+    transition-duration: 0.1s;
+
+    &:hover {
+        scale: 1.02
+    }
+
+    &.disabled {
+        background-color: constants.$primary-light;
+    }
+}
+
+.input-field-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    .input-with-icon {
+        display: flex;
+        align-items: center;
+        border: 1px solid constants.$gray-300;
+        padding: 7px 8px;
+        border-radius: constants.$radius-sm;
+        background: #f9f9f9;
+        transition-duration: 0.1s;
+
+        &:hover {
+            scale: 1.02
+        }
+
+        .input-icon {
+            width: 15px;
+            height: 15px;
+            margin-right: 8px;
+            color: constants.$gray-300;
+            border-right: 1px solid constants.$gray-300;
+            padding-right: 8px;
+        }
+
+        .input-field {
+            border: none;
+            outline: none;
+            flex: 1;
+            background: transparent;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: constants.$gray-700;
+        }
+    }
+
+    .error {
+        position: absolute;
+        top: 32px;
+        color: constants.$danger;
+        font-size: 0.675rem;
+        font-weight: 700;
+        margin-top: constants.$spacing-sm;
+        margin-left: 5px;
+    }
+
+    .password-field {
+        .hide-button {
+            background: constants.$background;
+            position: absolute;
+            height: 100%;
+            width: 35px;
+            right: -32px;
+            border: 1px solid constants.$gray-300;
+            border-radius: 0 constants.$radius-sm constants.$radius-sm 0;
+
+            &:hover {
+                cursor: pointer;
+                background-color: constants.$gray-100;
+            }
+        }
+    }
+}
+
+.detail-field {
+
+    @include mixins.column-center(flex-start, flex-start, constants.$spacing-sm);
+    .input-container {
+
+        
+        display: flex;
+        align-items: center;
+        border: 1px solid constants.$gray-300;
+        padding: 7px 8px;
+        border-radius: constants.$radius-sm;
+        background: #f9f9f9;
+        transition-duration: 0.1s;
+
+        .input-field {
+                border: none;
+                outline: none;
+                flex: 1;
+                background: transparent;
+                font-size: 0.875rem;
+                font-weight: 600;
+                color: constants.$gray-400;
+
+        }
+
+    }
+}

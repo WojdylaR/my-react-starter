@@ -1,0 +1,149 @@
+@use '../../styles/constants' as constants;
+@use '../../styles/mixins' as mixins;
+
+.navigation-component {
+    width: constants.$navbar-width;
+    height: 100vh;
+    border-right: 2px solid constants.$gray-200;
+    padding: 20px;
+    @include mixins.column-center(flex-start, flex-start, 10px);
+    font-weight: 500;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    background-color: constants.$background-soft;
+
+    @media (max-width: 1600px) {
+        width: constants.$navbar-width-sm;
+    }
+
+    .navigation-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 0px;
+        width: 100%;
+
+        img {
+            position: relative;
+            height: 30px
+        }
+
+        .button-container{
+            margin-left: auto;
+            
+            .button {
+                background-color: transparent;
+                border: 0;
+                display: flex;
+                align-items: center;
+                position: relative;
+
+                &:hover {
+                    cursor: pointer;
+                }
+
+                .dropdown {
+                    position: absolute;
+                    background-color: rgba(constants.$gray-300, 0.905);
+                    @include mixins.column-center(flex-start, flex-start, 15px);
+                    padding: 10px;
+                    top: 0px;
+                    z-index: 1;
+                    width: 100px;
+                    border-radius: 4px;
+                    left: 25px;
+
+                    .item {
+                        
+                        text-decoration: none; 
+                        color: constants.$gray-700;
+
+                        &:hover{
+                            scale: 1.012
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .navigation-list {
+        @include mixins.column-center(center, flex-start, 5px);
+        position: relative;
+        width: 100%;
+
+        .navigation-card {
+            
+            width: 100%;
+            position: relative;
+
+            .active-parent {
+                background-color: constants.$primary;
+                    color: white;
+            }
+            
+
+            .path {
+                padding: 7px 10px;
+                border-radius: 4px;
+                @include mixins.flex-center(flex-start, center, 15px);
+
+                &:hover.false {
+                    background-color: constants.$primary-ultra-light;
+                    cursor: pointer;
+                    scale: 1.02;
+                }
+                
+            }
+
+            .path .plus {
+                margin-left: auto;
+                scale: 1.5;
+                font-weight: 300;
+                color: constants.$gray-500;
+            }
+            
+            .children-path {
+                @include mixins.column-center(center, flex-start, 25px);
+                padding: 2px 30px;
+                font-weight: 500;
+                font-size: 0.850rem;
+
+                .item {
+                    width: 100%;
+                    padding: 6px 15px;
+                    box-sizing: border-box;
+                    border-radius: 4px;
+                }
+
+                .active-children {
+                    background-color: constants.$primary-ultra-light;
+                    color: black;
+                }
+                
+                
+            }
+
+            .item {
+                text-decoration: none; 
+                color: constants.$gray-700;
+
+                &.active {
+
+                    color: white
+                }
+            }
+        }
+    }
+
+    .navigation-footer {
+        margin-top: auto;
+        margin-bottom: 2.5rem;
+        font-size: 0.875rem;
+        width: 100%;
+        box-sizing: border-box;
+        @include mixins.flex-center(space-around, center);
+    }
+
+
+}

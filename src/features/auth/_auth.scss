@@ -1,0 +1,31 @@
+@use '../../styles/mixins' as mixins;
+@use '../../styles/constants' as constants;
+
+
+.auth-page {
+    @include mixins.flex-center();
+
+    .container {
+        display: flex;
+        box-shadow: constants.$box-shadow;
+
+        .auth-form {
+            @include mixins.flex-center();
+            background-color: constants.$background;
+            width: 425px;
+            height: 400px;
+        }
+
+        .welcome {
+            color: white;
+            background-color: constants.$primary;
+            @include mixins.column-center();
+            width: 425px;
+            height: 400px;
+
+            .title {
+                text-align: center;
+            }
+        }
+    }
+}
