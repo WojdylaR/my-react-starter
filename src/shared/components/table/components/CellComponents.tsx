@@ -1,4 +1,6 @@
-export const DefaultCellComponent = ({ data }: { data: string }) => {
+import type { DefaultCellProps } from "../tableInterfaces";
 
-    return <span className="data">{data}</span>
+export const DefaultCellComponent = ({ data }: DefaultCellProps) => {
+
+    return <span className="data">{data ?? '-'}</span>
 }

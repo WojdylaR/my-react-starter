@@ -2,7 +2,7 @@ import type { ColumnDef } from '@tanstack/react-table';
 
 export interface ITable<T> {
     data: TPaginatedResponse<T>;
-    columns: ColumnDef<any>[],
+    columns: ColumnDef<T>[],
     onRowClick?: ((row: T) => void) | null;
 }
 
@@ -14,7 +14,7 @@ export interface TPaginationMeta {
     firstItemNumber: number;
     firstPageInRange: number;
     last: number;
-    lesItemNumber: number;
+    lastItemNumber: number;
     lastPageInRange: number;
     pageCount: number;
     pageRange: number;
@@ -26,4 +26,8 @@ export interface TPaginationMeta {
 export type TPaginatedResponse<T> = {
     data: Array<T>;
     meta: TPaginationMeta;
+}
+
+export interface DefaultCellProps {
+  data: string | number | null;
 }
