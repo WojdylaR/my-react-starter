@@ -9,7 +9,7 @@ import { notifications } from "../../../shared/components/notification/notificat
 
 function AuthForm() {
 
-    const {mutateAsync} = useLogin();
+    const { mutateAsync } = useLogin();
     const {refetch} = useGetUser();
 
     const onSubmit: SubmitHandler<FormFieldsAuth> = async (data) => {
