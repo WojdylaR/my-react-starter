@@ -23,6 +23,10 @@ export function useGetUser() {
             })
             notifications.success('Connexion réussie !');
             navigate('/signboard');
+            return response.data;
+        }).catch((error) => {
+
+            throw new Error(error.response?.data?.message || 'Erreur lors de la récupération des données utilisateur');
         })
     })
 }

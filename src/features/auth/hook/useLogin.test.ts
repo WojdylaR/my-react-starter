@@ -8,8 +8,16 @@ vi.mock("../../../infrastructure/client", () => ({
     }
 }))
 
+vi.mock("../../../stores/credentialsStore", () => ({
+    useCredentialsStore: vi.fn(() => ({
+        setToken: vi.fn()
+    }))
+}))
+
+
 import { useLogin } from "./useLogin";
 import { api } from "../../../infrastructure/client";
+import { useCredentialsStore } from "../../../stores/credentialsStore";
 
 describe("useLogin", () => {
     beforeEach(() => {
@@ -59,7 +67,36 @@ describe("useLogin", () => {
             expect(result.current.isError).toBe(true)
             expect(result.current.error).toBeDefined()
         })
+    })
 
-        expect(result.current.error).toBeDefined()
+    it("should call setToken on successful login", async () => {
+        const mockSetToken = vi.fn()
+        
+        vi.mocked(useCredentialsStore).mockReturnValue({
+            setToken: mockSetToken
+        })
+        
+        vi.mocked(api.post).mockResolvedValueOnce({
+            data: {
+                token: "fake-token",
+                refreshToken: "fake-refresh-token"
+            }
+        })
+        
+        const { result } = renderHook(() => useLogin())
+        
+        await result.current.mutateAsync({ 
+            email: "test@test.com", 
+            password: "password" 
+        })
+        
+        await waitFor(() => {
+            expect(result.current.isSuccess).toBe(true)
+        })
+        
+        expect(mockSetToken).toHaveBeenCalledWith({
+            token: "fake-token", 
+            refreshToken: "fake-refresh-token"
+        })
     })
 })
